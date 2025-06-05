@@ -1,72 +1,72 @@
 [
     {
         "userID": 1,
-        "name": "leif",
+        "name": "Leif Schröder",
         "age": 22,
-        "password": "asdf",
+        "password": "Leif2024!",
         "role": "verwaltung",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
         "userID": 2,
-        "name": "admin",
-        "age": 22,
-        "password": "admin",
+        "name": "Julia Wagner",
+        "age": 35,
+        "password": "Admin!Secure35",
         "role": "admin",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
         "userID": 3,
-        "name": "Hannelore",
+        "name": "Hannelore Krüger",
         "age": 60,
-        "password": "verwaltung",
+        "password": "Hanni60@lib",
         "role": "user",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
         "userID": 4,
-        "name": "testuser",
+        "name": "Max Mustermann",
         "age": 20,
-        "password": "test",
+        "password": "MaxTest123",
         "role": "user",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
         "userID": 5,
-        "name": "new1",
-        "age": 99,
-        "password": "new1",
+        "name": "Svenja Koch",
+        "age": 42,
+        "password": "SvenjaVerw@42",
         "role": "verwaltung",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
+        "userID": 6,
+        "name": "Fatih Yilmaz",
+        "age": 29,
+        "password": "FatihSecure!29",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
         "userID": 7,
-        "name": "l",
-        "age": 2,
-        "password": "l",
+        "name": "Lisa Meier",
+        "age": 31,
+        "password": "LisaBooks31!",
         "role": "user",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}
     },
     {
         "userID": 8,
-        "name": "t",
-        "age": 2,
-        "password": "t",
-        "role": "user",
-        "borrowedBooks": [],
-        "borrowedBookTimestamps": {}
-    },
-    {
-        "userID": 9,
-        "name": "test",
-        "age": 2,
-        "password": "test",
+        "name": "Thomas Berger",
+        "age": 24,
+        "password": "T.Becker?",
         "role": "user",
         "borrowedBooks": [],
         "borrowedBookTimestamps": {}

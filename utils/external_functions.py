@@ -95,6 +95,7 @@ def menu_show_articles(library):
         cls()
         print("❌ Falsche Eingabe")
     hold_until_user_exits()
+
 def menu_search_articles(library):
     """
     Ermöglicht die Suche nach Medien anhand eines Titels oder Stichworts.
@@ -188,7 +189,6 @@ def menu_add_article(library):
 
     print(f"✅ {new_item.type.capitalize()} '{title}' wurde hinzugefügt.")
     hold_until_user_exits()
-
 
 def menu_delete_article(library):
     """
@@ -307,7 +307,6 @@ def menu_delete_article(library):
     hold_until_user_exits()
     cls()
 
-    
 def menu_remove_article_from_user(library):
     """
     Öffnet ein Menü, um einem Benutzer ein zuvor ausgeliehenes Medium zu entziehen
@@ -389,7 +388,6 @@ def menu_remove_article_from_user(library):
         print("❌ Medium nicht gefunden oder nicht ausgeliehen.")
 
     time.sleep(1.5)
-
 
 def menu_user_list(library):
     """

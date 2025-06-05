@@ -23,7 +23,6 @@ from utils.external_functions import (
     menu_show_own_items,
     menu_add_article,
     menu_return_book,
-    LibrarySystem
 )
 
 from utils.class_media_items import (
@@ -36,6 +35,10 @@ from utils.class_media_items import (
 from utils.class_users import (
     User,
     Author
+)
+
+from utils.class_librarySystem import (
+    LibrarySystem
 )
 
 def main_menu(library, user):
