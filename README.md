@@ -1,15 +1,18 @@
 # 1. 📚 Library Management System
+
 Ein textbasiertes Bibliotheksverwaltungssystem zur Verwaltung von Medien (Bücher, DVDs, Magazine) und Benutzern mit verschiedenen Rollenrechten. Ideal für Lern- und Schulprojekte im Bereich Python OOP, Dateiverwaltung und Konsolenanwendungen.
 
 # 1.2 🚀 Funktionen
 
 # 1.2.1 🔐 Benutzerverwaltung
+
 - Anmeldung mit Passwort
 - Rollen: `user`, `verwaltung`, `admin`
 - Benutzer hinzufügen, löschen, Rolle ändern
 - Benutzerliste und Suchfunktion
 
 # 1.2.2 📦 Medienverwaltung
+
 - Medien hinzufügen: Buch, DVD, Magazin
 - Medien löschen
 - Medien durchsuchen und anzeigen
@@ -17,6 +20,7 @@ Ein textbasiertes Bibliotheksverwaltungssystem zur Verwaltung von Medien (Büche
 - Automatisierte UUID-Generierung
 
 # 1.2.3 📖 Ausleihsystem
+
 - Medien ausleihen (Rollenabhängig)
 - Medien zurückgeben
 - Medien von Nutzern entziehen (nur Admin)

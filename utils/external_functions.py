@@ -3,22 +3,30 @@
 #########################
 
 import time, sys, os, msvcrt, datetime, uuid, json
-from utils.media_items import (Book, DVD, Magazine, MediaItem)
-from utils.users_class import (User, Author)
+from utils.class_media_items import (Book, DVD, Magazine, MediaItem)
+from utils.class_users import (User, Author)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def cls():
     """
-    Bildschirm löschen – funktioniert auf Windows und Unix-Systemen.
+    Bildschirm löschen – funktioniert auf Windows- und Unix-Systemen.
+
+    Führt den passenden Systembefehl aus, um das Terminal zu leeren:
+    - 'cls' für Windows
+    - 'clear' für Unix/Linux/macOS
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def loading_screen(duration = 5):
     """
-    Zeigt eine einfache Ladeanimation für die angegebene Dauer (Standard: 5 Sekunden).
-    """
+    Zeigt eine einfache Ladeanimation für die angegebene Dauer.
 
+    Die Animation besteht aus rotierenden Symbolen (|, /, -, \\), die im Terminal angezeigt werden.
+
+    Args:
+        duration (int, optional): Dauer der Ladeanimation in Sekunden. Standard ist 5 Sekunden.
+    """
     cls()
     end_time = time.time() + duration
     loading_animation = ["|", "/", "-", "\\"]
@@ -32,20 +40,29 @@ def loading_screen(duration = 5):
 def hold_until_user_exits():
     """
     Pausiert das Programm, bis der Benutzer die Leertaste drückt.
-    """
 
+    Wartet in einer Schleife auf Benutzereingaben über `msvcrt.getch()`
+    und beendet sich erst, wenn die Leertaste erkannt wird.
+    """
     print("\nDrücke <Leertaste> um zu verlassen.")
     while True:
-        key = msvcrt.getch()  # Reads the input but does nothing if its not the space bar
+        key = msvcrt.getch()  # Reads the input but does nothing if it's not the space bar
 
-        if key == b' ':  # If space-bar gets pressed (ASCII-Value 32)
+        if key == b' ':  # If space bar is pressed
             break
 
 def menu_show_articles(library):
     """
     Zeigt alle verfügbaren Bücher, DVDs oder Magazine basierend auf Benutzerauswahl.
-    """
 
+    Der Benutzer wählt eine Medienkategorie (Bücher, DVDs oder Magazine).
+    Die Funktion listet alle Medienobjekte dieser Kategorie aus `library.media_items` auf,
+    einschließlich ihres Verfügbarkeitsstatus.
+
+    Args:
+        library: Ein Objekt, das eine Liste `media_items` enthält,
+                 bestehend aus Instanzen von Book, DVD oder Magazine.
+    """
     cls()
     inner_choice = input("Auswählen:\n\n1. Alle Bücher\n2. Alle DVDs\n3. Alle Magazine\n\nBitte Auswahl eingeben (1-3):").strip().lower()
     if inner_choice == "1":
@@ -78,12 +95,16 @@ def menu_show_articles(library):
         cls()
         print("❌ Falsche Eingabe")
     hold_until_user_exits()
-
 def menu_search_articles(library):
     """
     Ermöglicht die Suche nach Medien anhand eines Titels oder Stichworts.
-    """
 
+    Durchsucht alle Medien in `library` nach einem passenden Titel oder Teilstring.
+    Zeigt gefundene Medien mit Typ, Titel, Zusatzinfos (z. B. Autor, Ausgabe) und Verfügbarkeitsstatus an.
+
+    Args:
+        library: Ein Objekt mit der Methode `searchItems`, das Medien durchsuchen kann.
+    """
     cls()
     title = input("🔎 Titel oder Stichwort eingeben: ")
     found_items = library.searchItems(title)
@@ -112,8 +133,14 @@ def menu_search_articles(library):
 def menu_add_article(library):
     """
     Fügt ein neues Medium (Buch, DVD oder Magazin) zur Bibliothek hinzu.
-    """
 
+    Der Benutzer wählt den Medientyp und gibt die relevanten Informationen ein.
+    Anschließend wird das neue Medienobjekt erstellt, automatisch mit einer UUID versehen
+    und über `library.addMediaItem()` hinzugefügt.
+
+    Args:
+        library: Ein Objekt mit der Methode `addMediaItem`, das Medienobjekte speichern kann.
+    """
     cls()
     print("📦 Medien hinzufügen:\n")
     print("1. Buch")
@@ -136,7 +163,6 @@ def menu_add_article(library):
 
     # ID automatisch generieren
     next_id = str(uuid.uuid4())
-
 
     # === BUCH ===
     if media_choice == "1":
@@ -163,11 +189,30 @@ def menu_add_article(library):
     print(f"✅ {new_item.type.capitalize()} '{title}' wurde hinzugefügt.")
     hold_until_user_exits()
 
+
 def menu_delete_article(library):
     """
-    Löscht ein Medium (Buch, DVD oder Magazin) aus der Bibliothek basierend auf dem Titel.
-    """
+    Öffnet ein Menü zur Auswahl eines Medientyps (Buch, DVD, Magazin) und ermöglicht das Löschen
+    eines Mediums anhand seines Titels aus der Bibliothek.
 
+    Parameter:
+    - library: Das Bibliotheksobjekt, das eine Liste von Medieneinträgen (media_items) enthält.
+
+    Der Nutzer wählt zunächst den Medientyp, sieht eine Liste der verfügbaren Titel und
+    gibt dann den Titel des zu löschenden Mediums ein. Wenn der Titel gefunden wird,
+    wird das Objekt aus den entsprechenden Listen entfernt.
+    
+    Unterstützte Medientypen:
+    - Book
+    - DVD
+    - Magazine
+    
+    Hinweise:
+    - Eingabe von Enter im Hauptmenü bricht den Vorgang ab.
+    - Nach der Löschung wird eine Bestätigung ausgegeben.
+    - Bei ungültiger Eingabe oder nicht gefundenem Titel erfolgt eine entsprechende Meldung.
+    """
+    
     cls()
     print("🗑️  Welchen Medientyp möchtest du löschen?\n")
     print("1. 📕 Buch")
@@ -261,12 +306,29 @@ def menu_delete_article(library):
 
     hold_until_user_exits()
     cls()
+
     
 def menu_remove_article_from_user(library):
     """
-    Entzieht einem Benutzer ein ausgeliehenes Medium und markiert es wieder als verfügbar.
-    """
+    Öffnet ein Menü, um einem Benutzer ein zuvor ausgeliehenes Medium zu entziehen
+    und es in der Bibliothek wieder als verfügbar zu markieren.
 
+    Parameter:
+    - library: Das Bibliotheksobjekt, das eine Liste von Benutzern (library.users) enthält,
+      von denen jeder ausgeliehene Medien in `borrowedItems` haben kann.
+
+    Ablauf:
+    - Zeigt eine Übersicht aller ausgeliehenen Medien je Benutzer.
+    - Benutzername wird abgefragt.
+    - Wenn Benutzer existiert und Medien ausgeliehen hat, wird der Titel des Mediums abgefragt.
+    - Bei erfolgreichem Match wird das Medium zurückgebucht (via `returnItem`) und als verfügbar markiert.
+
+    Hinweise:
+    - Bei leerer Eingabe erfolgt ein Abbruch.
+    - Fehlerhafte Namen oder Titel führen zu einer entsprechenden Meldung.
+    - Die Funktion nimmt keine Änderungen an der Medienliste der Bibliothek vor, sondern nur an der Ausleihliste des Benutzers.
+    """
+    
     cls()
     print("📦 Medium von Benutzer entziehen:\n")
 
@@ -327,6 +389,7 @@ def menu_remove_article_from_user(library):
         print("❌ Medium nicht gefunden oder nicht ausgeliehen.")
 
     time.sleep(1.5)
+
 
 def menu_user_list(library):
     """
@@ -718,182 +781,6 @@ def log_out():
     cls()
     print("👋 Log-out erfolgreich.")
     time.sleep(1.2)
-
-
-class LibrarySystem:
-    """
-    Hauptklasse des Bibliothekssystems zur Verwaltung von Medien und Benutzern.
-    
-    Attributes:
-        media_items (list): Liste aller Medien im System.
-        users (list): Liste registrierter Benutzer.
-        books (list): Zusätzliche Liste der Bücher (falls separat geführt).
-    """
-
-    def __init__(self):
-        self.media_items = []  # Enthält alle Medientypen (Bücher, DVDs, Magazine)
-        self.users = []
-        self.books = []
-
-    def addMediaItem(self, item):
-        self.media_items.append(item)
-
-    def addUser(self, user):
-        self.users.append(user)
-
-    def find_media_by_title_and_type(self, title, mediatype):
-        return next(
-            (item for item in self.media_items
-            if item.title.lower() == title.lower()
-            and type(item).__name__.lower() == mediatype.lower()),
-            None
-        )
-
-    def changeRole(self, user, new_role):
-        user.role = new_role
-
-    def searchItems(self, title):
-        return [item for item in self.media_items if title.lower() in item.title.lower()]
-
-    def username_exists(self, username):
-        return any(u.name.lower() == username.lower() for u in self.users)
-
-    def save_media_to_json(self, filename="media.json"):
-        path = os.path.join(BASE_DIR, filename)
-
-        data = []
-        for item in self.media_items:
-            data.append({
-                "itemID": item.itemID,
-                "type": item.type,
-                "title": item.title,
-                "author": getattr(item, "author", ""),
-                "isbn": getattr(item, "isbn", ""),
-                "genre": getattr(item, "genre", ""),
-                "issue": getattr(item, "issue", ""),
-                "duration": getattr(item, "duration", ""),
-                "available": item.available
-            })
-
-        with open(path, mode='w', encoding='utf-8') as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
-
-    def load_media_from_json(self, filename="media.json"):
-        path = os.path.join(BASE_DIR, filename)
-
-        if not os.path.exists(path):
-            print(f"❌ Datei nicht gefunden: {path}")
-            return
-
-        try:
-            with open(path, mode='r', encoding='utf-8') as file:
-                data = json.load(file)
-
-            for entry in data:
-                item_type = entry["type"].lower()
-
-                if item_type == "book":
-                    item = Book(
-                        itemID=entry["itemID"],
-                        title=entry["title"],
-                        author=entry["author"],
-                        isbn=entry["isbn"],
-                        genre=entry["genre"],
-                        type=item_type
-                    )
-                elif item_type == "dvd":
-                    item = DVD(
-                        itemID=entry["itemID"],
-                        title=entry["title"],
-                        duration=entry["duration"],
-                        genre=entry["genre"],  # falls du das eingeführt hast
-                        type=item_type
-                    )
-                elif item_type == "magazine":
-                    item = Magazine(
-                        itemID=entry["itemID"],
-                        title=entry["title"],
-                        issue=entry["issue"],
-                        type=item_type
-                    )
-                else:
-                    print(f"⚠️ Unbekannter Typ: {item_type}")
-                    continue
-
-                item.available = entry.get("available", True)
-                self.media_items.append(item)
-
-        except Exception as e:
-            print(f"❌ Fehler beim Laden aus JSON: {e}")
-
-    def load_users_from_json(self, filename="users.json"):
-        path = os.path.join(BASE_DIR, filename)
-        if not os.path.exists(path):
-            print(f"❌ Datei nicht gefunden: {path}")
-            return
-
-        try:
-            with open(path, mode='r', encoding='utf-8') as file:
-                users = json.load(file)
-
-            for entry in users:
-                user_id = entry["userID"]
-                name = entry["name"]
-                age = entry["age"]
-                password = entry["password"]
-                role = entry["role"]
-
-                if role == "author":
-                    user = Author(user_id, name, age, password, biography="")
-                else:
-                    user = User(user_id, name, age, password, role)
-
-                # Bücher zuweisen
-                for isbn in entry.get("borrowedBooks", []):
-                    for item in self.media_items:
-                        if isinstance(item, Book) and item.isbn == isbn:
-                            user.borrowedItems.append(item)
-                            item.available = False
-
-                # Zeitstempel wiederherstellen
-                timestamps = entry.get("borrowedBookTimestamps", {})
-                for isbn, ts in timestamps.items():
-                    for item in user.borrowedItems:
-                        if isinstance(item, Book) and item.isbn == isbn:
-                            user.borrowTimestamps[item.itemID] = ts
-
-                self.addUser(user)
-
-        except Exception as e:
-            print(f"❌ Fehler beim Laden der Benutzer aus JSON: {e}")
-
-
-    def save_users_to_json(self, filename="users.json"):
-        path = os.path.join(BASE_DIR, filename)
-        data = []
-
-        for user in self.users:
-            borrowed_books = [
-                item.isbn for item in user.borrowedItems if hasattr(item, "isbn")
-            ]
-
-            borrowed_timestamps = {
-                item.isbn: user.borrowTimestamps.get(item.itemID)
-                for item in user.borrowedItems if hasattr(item, "isbn")
-            }
-
-            data.append({
-                "userID": user.userID,
-                "name": user.name,
-                "age": user.age,
-                "password": user.password,
-                "role": user.role,
-                "borrowedBooks": borrowed_books,
-                "borrowedBookTimestamps": borrowed_timestamps
-            })
-
-        with open(path, mode='w', encoding='utf-8') as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
 
 def login(library):
     """
