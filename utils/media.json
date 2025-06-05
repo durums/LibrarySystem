@@ -1,0 +1,122 @@
+[
+    {
+        "itemID": "1",
+        "title": "1984",
+        "author": "George Orwell",
+        "isbn": "9780451524935",
+        "genre": "Dystopie",
+        "type": "book",
+        "available": true
+    },
+    {
+        "itemID": "2",
+        "title": "Der Herr der Ringe",
+        "author": "J.R.R. Tolkien",
+        "isbn": "9783608938281",
+        "genre": "Fantasy",
+        "type": "book",
+        "available": true
+    },
+    {
+        "itemID": "3",
+        "title": "Siddhartha",
+        "author": "Hermann Hesse",
+        "isbn": "9783518369549",
+        "genre": "Philosophie",
+        "type": "book",
+        "available": true
+    },
+    {
+        "itemID": "4",
+        "title": "Harry Potter und der Stein der Weisen",
+        "author": "J.K. Rowling",
+        "isbn": "9783551354013",
+        "genre": "Jugendliteratur",
+        "type": "book",
+        "available": true
+    },
+    {
+        "itemID": "5",
+        "title": "Fahrenheit 451",
+        "author": "Ray Bradbury",
+        "isbn": "9783453437819",
+        "genre": "Science Fiction",
+        "type": "book",
+        "available": true
+    },
+    {
+        "itemID": "6",
+        "title": "Inception",
+        "duration": 148,
+        "genre": "Science Fiction",
+        "type": "dvd",
+        "available": true
+    },
+    {
+        "itemID": "7",
+        "title": "The Matrix",
+        "duration": 136,
+        "genre": "Action",
+        "type": "dvd",
+        "available": true
+    },
+    {
+        "itemID": "8",
+        "title": "Forrest Gump",
+        "duration": 142,
+        "genre": "Drama",
+        "type": "dvd",
+        "available": true
+    },
+    {
+        "itemID": "9",
+        "title": "Interstellar",
+        "duration": 169,
+        "genre": "Science Fiction",
+        "type": "dvd",
+        "available": true
+    },
+    {
+        "itemID": "10",
+        "title": "Die Verurteilten",
+        "duration": 142,
+        "genre": "Drama",
+        "type": "dvd",
+        "available": true
+    },
+    {
+        "itemID": "11",
+        "title": "National Geographic",
+        "issue": "2023-09",
+        "type": "magazine",
+        "available": true
+    },
+    {
+        "itemID": "12",
+        "title": "Spiegel Geschichte",
+        "issue": "2023-11",
+        "type": "magazine",
+        "available": true
+    },
+    {
+        "itemID": "13",
+        "title": "Geo Epoche",
+        "issue": "2024-01",
+        "type": "magazine",
+        "available": true
+    },
+    {
+        "itemID": "14",
+        "title": "PM Magazin",
+        "issue": "2023-08",
+        "type": "magazine",
+        "available": true
+    },
+    {
+        "itemID": "15",
+        "title": "c't Magazin",
+        "issue": "2024-04",
+        "type": "magazine",
+        "available": true
+    }
+]

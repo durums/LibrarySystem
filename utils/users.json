@@ -1,0 +1,74 @@
+[
+    {
+        "userID": 1,
+        "name": "leif",
+        "age": 22,
+        "password": "asdf",
+        "role": "verwaltung",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 2,
+        "name": "admin",
+        "age": 22,
+        "password": "admin",
+        "role": "admin",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 3,
+        "name": "Hannelore",
+        "age": 60,
+        "password": "verwaltung",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 4,
+        "name": "testuser",
+        "age": 20,
+        "password": "test",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 5,
+        "name": "new1",
+        "age": 99,
+        "password": "new1",
+        "role": "verwaltung",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 7,
+        "name": "l",
+        "age": 2,
+        "password": "l",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 8,
+        "name": "t",
+        "age": 2,
+        "password": "t",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    },
+    {
+        "userID": 9,
+        "name": "test",
+        "age": 2,
+        "password": "test",
+        "role": "user",
+        "borrowedBooks": [],
+        "borrowedBookTimestamps": {}
+    }
+]
