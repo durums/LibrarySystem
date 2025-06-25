@@ -39,8 +39,11 @@ Ein textbasiertes Bibliotheksverwaltungssystem zur Verwaltung von Medien (Büche
 
 - **Sprache:** Python 3.x
 - **Dateien:**
-  - `LibrarySystem.py`: Hauptlogik und Menüführung
+  - `main.py`: Hauptlogik und Menüführung
   - `external_functions.py`: Hilfsfunktionen, Klassen und Backend-Logik
+  - `class_librarySystem.py`: Auslagerungsdatei der Klasse LibrarySystem
+  - `class_media_items`: Auslagerungsdatei der Klasse MediaItems
+  - `class_users.py`: Auslagerungsdatei der Users Class
 - **Datenformate:**
   - JSON (`media.json`, `users.json`) – primäre Speicherung
 
